@@ -55,4 +55,15 @@ public class PedidoTest {
         pedido.setStatus(StatusPedido.NOVO); 
         assertEquals(StatusPedido.NOVO, pedido.getStatus());
     }
+
+	@Test
+    @DisplayName("Deve alterar o status para FINALIZADO ao finalizar o pedido")
+    void deveAlterarStatusParaFinalizado() {
+        // Ação
+        pedido.finalizarPedido();
+
+        // Verificação
+        assertEquals(StatusPedido.FINALIZADO, pedido.getStatus(), 
+            "O status do pedido deve ser FINALIZADO após chamar finalizarPedido()");
+    }
 }
