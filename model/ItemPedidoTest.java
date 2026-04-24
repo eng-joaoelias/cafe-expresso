@@ -11,7 +11,7 @@ class ItemPedidoTest {
 
     @BeforeEach
     void setUp() {
-        // Preparação: Criamos um produto que será usado nos testes do Item
+        // Preparação: Cria um produto pra uso nos testes do Item
         produtoPadrao = new Produto("Teclado Mecânico", 250.00);
     }
 
