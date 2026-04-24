@@ -33,7 +33,7 @@ public class Pedido {
 	    }
 	}
 	
-	public void envarParaCozinha() {
+	public void enviarParaCozinha() {
 		this.setStatus(status.EM_PREPARO);
 	}
 	
