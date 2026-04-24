@@ -91,4 +91,19 @@ public class PedidoTest {
         assertEquals(StatusPedido.EM_PREPARO, pedido.getStatus(), 
             "O status deve mudar para EM_PREPARO");
     }
+
+	@Test
+    @DisplayName("Deve garantir a transição sequencial de estados")
+    void deveGarantirTransicaoDeEstados() {
+        // 1. Inicia nulo ou novo (dependendo do seu Enum)
+        assertNull(pedido.getStatus());
+
+        // 2. Vai para cozinha
+        pedido.envarParaCozinha();
+        assertEquals(StatusPedido.EM_PREPARO, pedido.getStatus());
+
+        // 3. Finaliza
+        pedido.finalizarPedido();
+        assertEquals(StatusPedido.FINALIZADO, pedido.getStatus());
+    }
 }
