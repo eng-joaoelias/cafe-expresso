@@ -28,7 +28,9 @@ public class Pedido {
 	}
 	
 	public void finalizarPedido() {
-		this.setStatus(status.FINALIZADO);
+	    if (this.status == StatusPedido.EM_PREPARO && !itens.isEmpty()) {
+	        this.status = StatusPedido.FINALIZADO;
+	    }
 	}
 	
 	public void envarParaCozinha() {
