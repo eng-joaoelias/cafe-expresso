@@ -33,8 +33,12 @@ public class Pedido {
 	    }
 	}
 	
+	public void pagar() {
+		this.setStatus(StatusPedido.PAGO);
+	}
+	
 	public void enviarParaCozinha() {
-		this.setStatus(status.EM_PREPARO);
+	    this.setStatus(StatusPedido.EM_PREPARO);
 	}
 	
 	public ArrayList<ItemPedido> getItens() {
