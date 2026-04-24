@@ -26,4 +26,17 @@ class ItemPedidoTest {
             () -> assertEquals("Teclado Mecânico", item.getProduto().getNome(), "O nome do produto dentro do item deve estar correto")
         );
     }
+
+    @Test
+    @DisplayName("Deve permitir alterar o produto e a quantidade via setters")
+    void deveAlterarAtributosComSetters() {
+        ItemPedido item = new ItemPedido(produtoPadrao, 1);
+        Produto novoProduto = new Produto("Mouse Gamer", 150.00);
+        
+        item.setProduto(novoProduto);
+        item.setQuantidade(5);
+        
+        assertEquals(novoProduto, item.getProduto());
+        assertEquals(5, item.getQuantidade());
+    }
 }
