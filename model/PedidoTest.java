@@ -80,4 +80,15 @@ public class PedidoTest {
             () -> assertEquals(StatusPedido.FINALIZADO, pedido.getStatus())
         );
     }
+
+	@Test
+    @DisplayName("Deve alterar o status para EM_PREPARO ao enviar para a cozinha")
+    void deveEnviarParaCozinha() {
+        // Ação
+        pedido.envarParaCozinha();
+
+        // Verificação
+        assertEquals(StatusPedido.EM_PREPARO, pedido.getStatus(), 
+            "O status deve mudar para EM_PREPARO");
+    }
 }
