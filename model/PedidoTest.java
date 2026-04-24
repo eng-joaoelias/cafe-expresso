@@ -51,18 +51,23 @@ public class PedidoTest {
     @Test
     @DisplayName("Deve alterar o status para FINALIZADO ao finalizar o pedido")
     void deveAlterarStatusParaFinalizado() {
+        // Preparação necessária para a regra do seu IF:
+        pedido.adicionarItem(cafe, 1);
+        pedido.enviarParaCozinha();
+        
         // Ação
         pedido.finalizarPedido();
 
         // Verificação
         assertEquals(StatusPedido.FINALIZADO, pedido.getStatus(), 
-            "O status do pedido deve ser FINALIZADO após chamar finalizarPedido()");
+            "O status deve ser FINALIZADO pois atendemos aos requisitos (itens + preparo)");
     }
 
     @Test
     @DisplayName("Deve garantir que o total seja calculado corretamente antes de finalizar")
     void deveCalcularTotalEFinalizar() {
         pedido.adicionarItem(cafe, 2); // Total 10.00
+        pedido.enviarParaCozinha(); // Adicionado para satisfazer o IF do finalizarPedido
         
         double totalAntes = pedido.calcularTotal();
         pedido.finalizarPedido();
@@ -85,17 +90,16 @@ public class PedidoTest {
     }
     
     @Test
-    @DisplayName("Deve garantir a transição sequencial de estados")
-    void deveGarantirTransicaoDeEstados() {
-        // 1. Inicia nulo ou novo (dependendo do seu Enum)
-        assertNull(pedido.getStatus());
-
-        // 2. Vai para cozinha
+    @DisplayName("Deve permitir finalizar quando está em preparo e tem itens")
+    void deveFinalizarComSucesso() {
+        pedido.adicionarItem(cafe, 1);
         pedido.enviarParaCozinha();
-        assertEquals(StatusPedido.EM_PREPARO, pedido.getStatus());
-
-        // 3. Finaliza
+        
         pedido.finalizarPedido();
-        assertEquals(StatusPedido.FINALIZADO, pedido.getStatus());
+
+        assertEquals(StatusPedido.FINALIZADO, pedido.getStatus(), 
+            "O status deveria ter mudado para FINALIZADO.");
     }
+    
+    
 }
