@@ -66,4 +66,18 @@ public class PedidoTest {
         assertEquals(StatusPedido.FINALIZADO, pedido.getStatus(), 
             "O status do pedido deve ser FINALIZADO após chamar finalizarPedido()");
     }
+
+	@Test
+    @DisplayName("Deve garantir que o total seja calculado corretamente antes de finalizar")
+    void deveCalcularTotalEFinalizar() {
+        pedido.adicionarItem(cafe, 2); // Total 10.00
+        
+        double totalAntes = pedido.calcularTotal();
+        pedido.finalizarPedido();
+        
+        assertAll("Verificações após finalização",
+            () -> assertEquals(10.00, totalAntes, 0.001),
+            () -> assertEquals(StatusPedido.FINALIZADO, pedido.getStatus())
+        );
+    }
 }
