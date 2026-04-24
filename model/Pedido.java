@@ -19,6 +19,13 @@ public class Pedido {
 		return true;
 	}
 	
+	public double calcularTotal(){
+		double vlrASerPago = 0;
+		for (ItemPedido itemPedido : itens) {
+			vlrASerPago = vlrASerPago + itemPedido.getProduto().getPrecounitario()*itemPedido.getQuantidade();
+		}
+		return vlrASerPago;
+	}
 	
 	public ArrayList<ItemPedido> getItens() {
 		return itens;
