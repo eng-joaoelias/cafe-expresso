@@ -41,4 +41,10 @@ public class PedidoTest {
 
         assertEquals(totalEsperado, totalObtido, 0.001, "O cálculo do total deve ser a soma dos subprodutos"); //O terceiro valor é para garantir que minimas desigualdades decorrentes do compilador nao interfiram
     }
+
+	@Test
+    @DisplayName("O valor total de um pedido vazio deve ser zero")
+    void deveRetornarZeroParaPedidoVazio() {
+        assertEquals(0.0, pedido.calcularTotal(), "Um pedido sem itens deve ter valor total igual a 0");
+    }
 }
