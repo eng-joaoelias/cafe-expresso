@@ -26,9 +26,13 @@ public class Pedido {
 		}
 		return vlrASerPago;
 	}
-
+	
 	public void finalizarPedido() {
 		this.setStatus(status.FINALIZADO);
+	}
+	
+	public void envarParaCozinha() {
+		this.setStatus(status.EM_PREPARO);
 	}
 	
 	public ArrayList<ItemPedido> getItens() {
@@ -38,7 +42,7 @@ public class Pedido {
 	public StatusPedido getStatus() {
 		return status;
 	}
-	public void setStatus(StatusPedido status) {
+	private void setStatus(StatusPedido status) {
 		this.status = status;
 	}
 	
