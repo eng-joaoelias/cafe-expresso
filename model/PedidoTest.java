@@ -47,4 +47,12 @@ public class PedidoTest {
     void deveRetornarZeroParaPedidoVazio() {
         assertEquals(0.0, pedido.calcularTotal(), "Um pedido sem itens deve ter valor total igual a 0");
     }
+
+	@Test
+    @DisplayName("Deve alterar e recuperar o status do pedido")
+    void deveGerenciarStatusDoPedido() {
+        // Supondo que StatusPedido seja um Enum com o valor NOVO ou PENDENTE
+        pedido.setStatus(StatusPedido.NOVO); 
+        assertEquals(StatusPedido.NOVO, pedido.getStatus());
+    }
 }
