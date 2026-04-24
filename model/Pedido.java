@@ -26,6 +26,10 @@ public class Pedido {
 		}
 		return vlrASerPago;
 	}
+
+	public void finalizarPedido() {
+		this.setStatus(status.FINALIZADO);
+	}
 	
 	public ArrayList<ItemPedido> getItens() {
 		return itens;
