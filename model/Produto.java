@@ -4,6 +4,11 @@ public class Produto {
 	private String nome;
 	private double precounitario;
 	
+	public Produto(String nome, double precounitario) {
+		super();
+		this.nome = nome;
+		this.precounitario = precounitario;
+	}
 	public String getNome() {
 		return nome;
 	}
