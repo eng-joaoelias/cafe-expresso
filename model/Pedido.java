@@ -8,6 +8,7 @@ public class Pedido {
 	
 	public Pedido() {
 		itens = new ArrayList <ItemPedido>();
+		this.status = StatusPedido.EM_PREPARO;
 	}
 	
 	public boolean adicionarItem(Produto produto, int quantidade) {
