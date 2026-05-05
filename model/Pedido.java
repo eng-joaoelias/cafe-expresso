@@ -27,8 +27,12 @@ public class Pedido {
     }
 	
 	public double calcularTotal() {
-	    return itens.stream().mapToDouble(ItemPedido::getSubtotal).sum();
-	}
+        double total = 0;
+        for (ItemPedido item : itens) {
+            total += item.getSubtotal();
+        }
+        return total;
+    }
 	
 	public void finalizarPedido() {
 	    if (this.status == StatusPedido.EM_PREPARO && !itens.isEmpty()) {
