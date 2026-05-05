@@ -62,4 +62,14 @@ public class PedidoTest {
         pedido.finalizarPedido();
         assertEquals(StatusPedido.FINALIZADO, pedido.getStatus());
     }
+    
+    @Test
+    @DisplayName("Não deve finalizar pedido se ele ainda estiver como PENDENTE")
+    void naoDeveFinalizarPedidoDireto() {
+        pedido.adicionarItem(cafe, 1);
+        pedido.finalizarPedido();
+
+        assertNotEquals(StatusPedido.FINALIZADO, pedido.getStatus(), "Pedido não pode ser finalizado sem passar pela cozinha");
+        assertEquals(StatusPedido.PENDENTE, pedido.getStatus());
+    }
 }
