@@ -46,9 +46,9 @@ jobs:
         # -B (Batch mode) evita logs excessivos; clean remove builds antigos; test executa o JUnit
         run: mvn -B clean test --file pom.xml
 
-      # 4. Upload dos resultados dos testes (opcional, mas recomendado)
+        # 4. Upload dos resultados dos testes (opcional, mas recomendado)
       - name: Publicar Relatório de Testes
-          if: always() # Executa mesmo se os testes falharem
+        if: always() # Executa mesmo se os testes falharem
         uses: actions/upload-artifact@v4
         with:
           name: relatorio-testes
