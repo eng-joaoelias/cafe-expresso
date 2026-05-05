@@ -67,6 +67,7 @@ public class PedidoTest {
     @DisplayName("Não deve finalizar pedido se ele ainda estiver como PENDENTE")
     void naoDeveFinalizarPedidoDireto() {
         pedido.adicionarItem(cafe, 1);
+        // Pula o enviarParaCozinha()
         pedido.finalizarPedido();
 
         assertNotEquals(StatusPedido.FINALIZADO, pedido.getStatus(), "Pedido não pode ser finalizado sem passar pela cozinha");
@@ -78,5 +79,11 @@ public class PedidoTest {
     void devePermitirPagar() {
         pedido.pagar();
         assertEquals(StatusPedido.PAGO, pedido.getStatus());
+    }
+    
+    @Test
+    @DisplayName("O valor total de um pedido sem itens deve ser zero")
+    void deveRetornarZeroParaPedidoVazio() {
+        assertEquals(0.0, pedido.calcularTotal());
     }
 }
