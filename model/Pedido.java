@@ -19,12 +19,8 @@ public class Pedido {
 		return true;
 	}
 	
-	public double calcularTotal(){
-		double vlrASerPago = 0;
-		for (ItemPedido itemPedido : itens) {
-			vlrASerPago = vlrASerPago + itemPedido.getProduto().getPrecounitario()*itemPedido.getQuantidade();
-		}
-		return vlrASerPago;
+	public double calcularTotal() {
+	    return itens.stream().mapToDouble(ItemPedido::getSubtotal).sum();
 	}
 	
 	public void finalizarPedido() {
