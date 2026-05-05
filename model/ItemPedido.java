@@ -24,4 +24,8 @@ public class ItemPedido {
 		this.quantidade = quantidade;
 	}
 	
+	public double getSubtotal() {
+	    return this.produto.getPrecounitario() * this.quantidade;
+	}
+	
 }
