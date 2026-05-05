@@ -28,5 +28,17 @@ public class PedidoTest {
         assertEquals(25.00, pedido.calcularTotal(), 0.001);
     }
     
+    @Test
+    @DisplayName("Não deve permitir adicionar itens se o pedido estiver FINALIZADO ou PAGO")
+    void naoDeveAdicionarItemAposFinalizar() {
+        pedido.adicionarItem(paoDeQueijo, 1);
+        pedido.enviarParaCozinha();
+        pedido.finalizarPedido();
+
+        boolean resultado = pedido.adicionarItem(cafe, 1);
+
+        assertFalse(resultado, "Deveria retornar false ao tentar adicionar item em pedido finalizado");
+        assertEquals(1, pedido.getItens().size(), "A lista de itens não deve ter aumentado");
+    }
     
 }
