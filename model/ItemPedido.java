@@ -21,8 +21,11 @@ public class ItemPedido {
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+        }
+        this.quantidade = quantidade;
+    }
 	
 	public double getSubtotal() {
 	    return this.produto.getPrecounitario() * this.quantidade;
