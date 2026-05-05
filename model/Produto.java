@@ -5,10 +5,9 @@ public class Produto {
 	private double precounitario;
 	
 	public Produto(String nome, double precounitario) {
-		super();
-		this.nome = nome;
-		this.precounitario = precounitario;
-	}
+        this.nome = nome;
+        setPrecounitario(precounitario); // Usa o setter para validar no construtor
+    }
 	public String getNome() {
 		return nome;
 	}
@@ -19,8 +18,11 @@ public class Produto {
 		return precounitario;
 	}
 	public void setPrecounitario(double precounitario) {
-		this.precounitario = precounitario;
-	}
+        if (precounitario < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo");
+        }
+        this.precounitario = precounitario;
+    }
 	
 	
 }
