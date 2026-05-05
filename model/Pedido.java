@@ -12,13 +12,19 @@ public class Pedido {
 	}
 	
 	public boolean adicionarItem(Produto produto, int quantidade) {
-		ItemPedido itemAdd = new ItemPedido(produto, quantidade);
-		itens.add(itemAdd);
-		if (!itens.contains(itemAdd)) {
-			return false;
-		}
-		return true;
-	}
+        if (this.status == StatusPedido.FINALIZADO || this.status == StatusPedido.PAGO) {
+            return false;
+        }
+
+        for (ItemPedido item : itens) {
+            if (item.getProduto().getNome().equals(produto.getNome())) {
+                item.setQuantidade(item.getQuantidade() + quantidade);
+                return true;
+            }
+        }
+
+        return itens.add(new ItemPedido(produto, quantidade));
+    }
 	
 	public double calcularTotal() {
 	    return itens.stream().mapToDouble(ItemPedido::getSubtotal).sum();
