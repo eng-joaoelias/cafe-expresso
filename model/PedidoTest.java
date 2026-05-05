@@ -41,4 +41,12 @@ public class PedidoTest {
         assertEquals(1, pedido.getItens().size(), "A lista de itens não deve ter aumentado");
     }
     
+    @Test
+    @DisplayName("Deve calcular o total corretamente usando os subtotais dos itens")
+    void deveCalcularTotalCorretamente() {
+        pedido.adicionarItem(cafe, 2);
+        pedido.adicionarItem(paoDeQueijo, 2);
+        
+        assertEquals(19.00, pedido.calcularTotal(), 0.001);
+    }
 }
