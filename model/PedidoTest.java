@@ -49,4 +49,17 @@ public class PedidoTest {
         
         assertEquals(19.00, pedido.calcularTotal(), 0.001);
     }
+    
+    @Test
+    @DisplayName("Deve respeitar o fluxo: PENDENTE -> EM_PREPARO -> FINALIZADO")
+    void deveSeguirFluxoDeEstados() {
+        assertEquals(StatusPedido.PENDENTE, pedido.getStatus());// Estado inicial
+
+        pedido.enviarParaCozinha();// Para Cozinha
+        assertEquals(StatusPedido.EM_PREPARO, pedido.getStatus());
+
+        pedido.adicionarItem(cafe, 1); // Finalizar (precisa de item)
+        pedido.finalizarPedido();
+        assertEquals(StatusPedido.FINALIZADO, pedido.getStatus());
+    }
 }
