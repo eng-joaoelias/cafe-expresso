@@ -72,4 +72,11 @@ public class PedidoTest {
         assertNotEquals(StatusPedido.FINALIZADO, pedido.getStatus(), "Pedido não pode ser finalizado sem passar pela cozinha");
         assertEquals(StatusPedido.PENDENTE, pedido.getStatus());
     }
+    
+    @Test
+    @DisplayName("Deve permitir o pagamento em qualquer estágio (conforme regra atual)")
+    void devePermitirPagar() {
+        pedido.pagar();
+        assertEquals(StatusPedido.PAGO, pedido.getStatus());
+    }
 }
