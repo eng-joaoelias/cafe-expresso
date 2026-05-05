@@ -45,8 +45,10 @@ public class Pedido {
 	}
 	
 	public void enviarParaCozinha() {
-	    this.setStatus(StatusPedido.EM_PREPARO);
-	}
+        if (this.status == StatusPedido.PENDENTE) {
+            this.status = StatusPedido.EM_PREPARO;
+        }
+    }
 	
 	public ArrayList<ItemPedido> getItens() {
 		return itens;
