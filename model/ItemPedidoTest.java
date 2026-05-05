@@ -34,5 +34,15 @@ class ItemPedidoTest {
         assertEquals(20.00, item.getSubtotal(), 0.001);
     }
     
+    @Test
+    @DisplayName("Deve permitir alterar o produto e refletir no subtotal")
+    void deveAlterarProdutoERefletirNoSubtotal() {
+        ItemPedido item = new ItemPedido(cafe, 2);
+        Produto pãoDeQueijo = new Produto("Pão de Queijo", 4.50);
+        
+        item.setProduto(pãoDeQueijo);
+        
+        assertEquals(9.00, item.getSubtotal(), 0.001, "O subtotal deve atualizar com o preço do novo produto");
+    }
     
 }
