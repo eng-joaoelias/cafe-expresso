@@ -24,6 +24,10 @@ jobs:
     # Define o sistema operacional da máquina virtual (Runner) que executará o código
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        java: [ '17', '21' ] # O pipeline rodará duas vezes, uma em cada versão
+
     # Sequência de comandos que compõem o job
     steps:
       # 1. Passo para clonar o seu código do repositório para dentro da máquina virtual
@@ -35,7 +39,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           # Usa a versão definida na variável global acima
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: ${{ matrix.java }}
           # Define a distribuição do Java (Temurin é a recomendada pela comunidade)
           distribution: 'temurin'
           # Ativa o cache do Maven para acelerar builds futuros baixando menos dependências
